@@ -1,0 +1,49 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>cn.e3mall</groupId>
+    <artifactId>e3-parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+  <groupId>cn.e3mall</groupId>
+  <artifactId>e3-manager</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <description>这是一个聚合工程 pom</description>
+  <!-- e3-manager继承了common  子工程都会依赖common -->
+  <!-- 运行聚合工程是最方便的  可以配置tomcat插件 -->
+  
+  
+  <dependencies>
+    <dependency>
+        <groupId>cn.e3mall</groupId>
+        <artifactId>e3-common</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    
+    </dependency>
+  </dependencies>
+
+  
+  <modules>
+  	<module>e3-manager-pojo</module>
+  	<module>e3-manager-dao</module>
+  	<module>e3-manager-interface</module>
+  	<module>e3-manager-service</module>
+  
+  </modules>
+  <!-- 配置tomcat插件 -->  
+  <build>
+    <plugins>
+				<!-- 配置Tomcat插件 12个war包  启动12个tomcat很麻烦 于是需要配置端口号 -->
+				<!-- localhost:8080 可以不用带工程名  所以需要配置</path> -->
+				<plugin>
+					<groupId>org.apache.tomcat.maven</groupId>
+					<artifactId>tomcat7-maven-plugin</artifactId>
+					<configuration>
+					  <path>/</path>
+                      <port>8080</port>					
+					</configuration>
+			    </plugin>
+			</plugins>
+  </build>
+</project>
